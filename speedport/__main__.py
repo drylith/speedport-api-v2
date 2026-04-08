@@ -119,6 +119,15 @@ def get_arguments():
     port_forwardings.add_argument(
         "port-forwardings", help="List port forwardings", action="store_true"
     )
+    pfw = subparser.add_parser(
+        "pfw-set", help="Set port forwardings"
+    )
+    pfw.add_argument(
+        "id", help="pfw-set id"
+    )
+    pfw.add_argument(
+        "active", choices=["1", "0"], help="pfw-set activate/deactivate"
+    )
     return vars(parser.parse_args())
 
 
@@ -150,6 +159,14 @@ async def check_args(speedport, args):
                 )
             )
     if args.get("port-forwardings"):
+        print(
+            data_table(
+                await speedport.port_forwardings,
+                ["id", "name", "active"],
+            )
+        )
+    if args.get("id") and args.get("active"):
+        await speedport.set_port_forwarding(args.get("id"), bool(int(args.get("active"))))
         print(
             data_table(
                 await speedport.port_forwardings,

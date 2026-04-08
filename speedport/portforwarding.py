@@ -20,12 +20,12 @@ class PortForwarding:
 
     @property
     def id(self):
-        return self._data.get("portforward_id", "")
+        return self._data.get("pfw_id", "")
 
     @property
     def name(self):
-        return self._data.get("portforward_name", "")
+        return self._data.get("pfw_name", "")
 
     @property
     def active(self):
-        return bool(int(self._data.get("portforward_active", "0")))
+        return bool(int(self._data.get("pfw_active", "0")))

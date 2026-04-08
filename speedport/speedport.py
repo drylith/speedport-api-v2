@@ -99,7 +99,17 @@ class Speedport:
     @property
     async def port_forwardings(self) -> list[PortForwarding]:
         data = await self.api.get_port_forwarding()
-        return [PortForwarding(entry) for entry in data.get("addportforwarding", [])]
+        result: list[PortForwarding] = []
+
+        if "addportuw" not in data: return result
+
+        for pfw in data["addportuw"]:   
+            if "id" not in pfw or "portuw_active" not in pfw or "portuw_name" not in pfw: continue
+            pfwentry = {"pfw_id": pfw["id"], "pfw_active": pfw["portuw_active"], "pfw_name": pfw["portuw_name"]}
+            result.append(PortForwarding(pfwentry))
+
+        result.sort(key=lambda d: d.name)
+        return result
 
     async def set_port_forwarding(self, portforward_id: str, status: bool):
         await self.api.set_port_forwarding(portforward_id, status)

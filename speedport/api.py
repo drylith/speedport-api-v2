@@ -145,9 +145,9 @@ class SpeedportApi:
     async def set_port_forwarding(self, portforward_id: str, status: bool):
         """Set port forwarding active/inactive"""
         _LOGGER.info(
-            "Turn %s port forwarding %s...", ["off", "on"][bool(status)], portforward_id
+            "Turn %s port forwarding for id=%s...", ["off", "on"][bool(status)], portforward_id
         )
-        data = {"portforward_id": str(portforward_id), "portforward_active": str(int(status))}
+        data = {"id": str(portforward_id), "portuw_active": str(int(status))}
         referer = "html/content/internet/portforwarding.html"
         return await self.api.post("data/PortuwMain.json", data, referer)
 
