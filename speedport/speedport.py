@@ -8,6 +8,7 @@ from . import exceptions
 from .api import SpeedportApi
 from .call import Call
 from .device import WlanDevice
+from .portforwarding import PortForwarding
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.WARNING)
@@ -94,6 +95,14 @@ class Speedport:
                 result.append(Call(call, call_type))
         result.sort(key=lambda d: d.date)
         return result
+
+    @property
+    async def port_forwardings(self) -> list[PortForwarding]:
+        data = await self.api.get_port_forwarding()
+        return [PortForwarding(entry) for entry in data.get("addportforwarding", [])]
+
+    async def set_port_forwarding(self, portforward_id: str, status: bool):
+        await self.api.set_port_forwarding(portforward_id, status)
 
     async def wifi_on(self):
         await self.api.set_wifi(status=True, guest=False)

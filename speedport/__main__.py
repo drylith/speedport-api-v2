@@ -113,6 +113,12 @@ def get_arguments():
     devices.add_argument("devices", help="List connected devices", action="store_true")
     calls = subparser.add_parser("calls", help="Output calls")
     calls.add_argument("calls", help="List last calls", action="store_true")
+    port_forwardings = subparser.add_parser(
+        "port-forwardings", help="Output port forwardings"
+    )
+    port_forwardings.add_argument(
+        "port-forwardings", help="List port forwardings", action="store_true"
+    )
     return vars(parser.parse_args())
 
 
@@ -143,6 +149,13 @@ async def check_args(speedport, args):
                     ["number", "type", "duration", "date"],
                 )
             )
+    if args.get("port-forwardings"):
+        print(
+            data_table(
+                await speedport.port_forwardings,
+                ["id", "name", "active"],
+            )
+        )
 
 
 async def check_wifi_args(speedport, args):
