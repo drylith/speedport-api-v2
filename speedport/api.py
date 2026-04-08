@@ -142,6 +142,16 @@ class SpeedportApi:
         return await self.api.get("data/PortForwarding.json", referer=referer, auth=True)
 
     @need_auth
+    async def set_port_forwarding(self, portforward_id: str, status: bool):
+        """Set port forwarding active/inactive"""
+        _LOGGER.info(
+            "Turn %s port forwarding %s...", ["off", "on"][bool(status)], portforward_id
+        )
+        data = {"portforward_id": str(portforward_id), "portforward_active": str(int(status))}
+        referer = "html/content/internet/nat_portforwarding.html"
+        return await self.api.post("data/PortForwarding.json", data, referer)
+
+    @need_auth
     async def set_wifi(self, status=True, guest=False, office=False):
         """Set wifi on/off"""
         extra = "guest" if guest else "office" if office else ""
