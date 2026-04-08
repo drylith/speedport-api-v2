@@ -137,6 +137,11 @@ class SpeedportApi:
         return await self.api.get("data/PhoneCalls.json", referer=referer, auth=True)
 
     @need_auth
+    async def get_port_forwarding(self):
+        referer = "html/content/internet/nat_portforwarding.html"
+        return await self.api.get("data/PortForwarding.json", referer=referer, auth=True)
+
+    @need_auth
     async def set_wifi(self, status=True, guest=False, office=False):
         """Set wifi on/off"""
         extra = "guest" if guest else "office" if office else ""
