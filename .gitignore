@@ -4,3 +4,5 @@ __pycache__/
 dist/
 src/*.egg-info/
 test*
+pyproject.toml
+*.egg-info
