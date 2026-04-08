@@ -6,15 +6,15 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="speedport-api",
-    version="0.6.0",
-    author="Andre Basche",
+    name="speedport-api-v2",
+    version="0.7.0",
+    author="Drylith",
     description="Control Telekom Speedport routers with Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     project_urls={
-        "GitHub": "https://github.com/Andre0512/speedport-api",
-        "PyPI": "https://pypi.org/project/speedport-api",
+        "GitHub": "https://github.com/drylith/speedport-api-v2",
+        "PyPI": "https://pypi.org/project/speedport-api-v2",
     },
     license="MIT",
     platforms="any",
