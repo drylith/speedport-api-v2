@@ -138,8 +138,8 @@ class SpeedportApi:
 
     @need_auth
     async def get_port_forwarding(self):
-        referer = "html/content/internet/nat_portforwarding.html"
-        return await self.api.get("data/PortForwarding.json", referer=referer, auth=True)
+        referer = "html/content/internet/portforwarding.html"
+        return await self.api.get("data/PortuwMain.json", referer=referer, auth=True)
 
     @need_auth
     async def set_port_forwarding(self, portforward_id: str, status: bool):
@@ -148,8 +148,8 @@ class SpeedportApi:
             "Turn %s port forwarding %s...", ["off", "on"][bool(status)], portforward_id
         )
         data = {"portforward_id": str(portforward_id), "portforward_active": str(int(status))}
-        referer = "html/content/internet/nat_portforwarding.html"
-        return await self.api.post("data/PortForwarding.json", data, referer)
+        referer = "html/content/internet/portforwarding.html"
+        return await self.api.post("data/PortuwMain.json", data, referer)
 
     @need_auth
     async def set_wifi(self, status=True, guest=False, office=False):
