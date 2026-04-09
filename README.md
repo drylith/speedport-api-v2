@@ -1,37 +1,39 @@
 **This python package is unofficial and is not related in any way to Telekom. It was developed by reversed engineered http requests and can stop working at anytime!**
-  
+
 ## Speedport-API
-[![PyPI - Status](https://img.shields.io/pypi/status/speedport-api)](https://pypi.org/project/speedport-api)
-[![PyPI](https://img.shields.io/pypi/v/speedport-api?color=blue)](https://pypi.org/project/speedport-api)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/speedport-api)](https://www.python.org/)
-[![PyPI - License](https://img.shields.io/pypi/l/speedport-api)](https://github.com/Andre0512/speedport-api/blob/main/LICENSE)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/speedport-api)](https://pypistats.org/packages/speedport-api)  
+
 Control Telekom Speedport routers with Python!
 
 ### Installation
+
 ```commandline
-pip install speedport-api
+pip install speedport-api-v2
 ```
 
 ### Supported Devices
-* Speedport Smart 4
+
+- Speedport Smart 4
 
 ### Commandline tool
+
 With this shipped commandline tool can a speedport in your network be controlled.
 
 #### Turn wifi off
+
 ```commandline
 $ speedport wifi off
 Turn off wifi...
 ```
 
 #### Turn guest wifi on
+
 ```commandline
 $ speedport guest-wifi on
 Turn on guest wifi...
 ```
 
 #### Reconnect for new ip address
+
 ```commandline
 $ speedport reconnect
 123.45.67.89 / 5403:f3:35aa:12f:7287:41cf:fb1c:3c83
@@ -40,6 +42,7 @@ Reconnect with internet provider...
 ```
 
 #### Enable wps connect
+
 ```commandline
 $ speedport wps
 Enable wps connect...
@@ -47,12 +50,14 @@ wps connect enabled for 113s...
 ```
 
 #### Reboot device
+
 ```commandline
 $ speedport reboot
 Reboot speedport...
 ```
 
 #### Print devices
+
 ```commandline
 $ speedport devices
 +-------------+---------------------+-------+-----------+
@@ -63,8 +68,8 @@ $ speedport devices
 | 10.5.12.227 | andre-xps           | wlan5 | 1         |
 ```
 
-
 #### Print calls
+
 ```commandline
 $ speedport calls
 +-------------+--------+----------+---------------------+
@@ -75,9 +80,29 @@ $ speedport calls
 | 7866        | dialed | 20       | 2024-04-06 18:39:00 |
 ```
 
+#### Print PortForwardings
+
+```commandline
+$ speedport port-forwardings
++----+-------+--------+
+| id | name  | active |
++----+-------+--------+
+| 1  | https | False   |
+| 2  | wg    | True   |
++----+-------+--------+
+```
+
+#### Enable/Disable PortForwardings
+
+```commandline
+$ speedport pfw <id> <active>
+INFO - Turn on/off port forwarding id=1...
+```
+
 ### Library
 
 #### Reconnect example
+
 ```python
 import asyncio
 from speedport import Speedport
@@ -91,6 +116,7 @@ asyncio.run(reconnect())
 ```
 
 #### Devices example
+
 ```python
 import asyncio
 from speedport import Speedport
